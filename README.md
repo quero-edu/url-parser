@@ -8,7 +8,7 @@ const parse = require('url-parser');
 parse('mysql://jos%C3%A9:maria@database.com:3306/some/path?option=value#spam')
 // {
 //   protocol: 'mysql',
-//   auth: [ 'josé', 'maria' ],
+//   auth: { username: 'josé', password: 'maria' },
 //   hostname: 'database.com',
 //   port: '3306',
 //   path: '/some/path',

@@ -7,8 +7,8 @@ test('Detect protocol', () => {
 });
 
 test('Detect aut', () => {
-  expect(parse('http://user:pass@site.com').auth).toEqual(['user', 'pass']);
-  expect(parse('http://j%C3%A3o:man%C3%89%25@site.com').auth).toEqual(['jão', 'manÉ%']);
+  expect(parse('http://user:pass@site.com').auth).toEqual({ username: 'user', password: 'pass' });
+  expect(parse('http://j%C3%A3o:man%C3%89%25@site.com').auth).toEqual({ username: 'jão', password: 'manÉ%' });
 });
 
 test('Detect port', () => {
@@ -50,7 +50,7 @@ test('Detect query string', () => {
 test('Detects everything at the same time', () => {
   expect(parse('sftp://poxa:vida@a.b.c.site.com:3000/yay/wow/?spam=egg&spam=r%C3%A3&pat%C3%AA=cream#something')).toEqual({
     protocol: 'sftp',
-    auth: ['poxa', 'vida'],
+    auth: { username: 'poxa', password: 'vida' },
     hostname: 'a.b.c.site.com',
     port: '3000',
     path: '/yay/wow',

@@ -5,7 +5,7 @@ module.exports = function(url) {
 
   return {
     protocol: result[1],
-    auth: removeTrailingAt(result[2] || '').split(':').map(decodeURIComponent),
+    auth: extractUserAndPass(result[2] || ''),
     hostname: result[3],
     port: (result[4] || '').substring(1),
     path: removeTrailingSlash(result[5] || '/'),
@@ -45,6 +45,12 @@ function removeTrailingSlash(path) {
   }
 
   return path.substring(0, path.length - 1);
+}
+
+function extractUserAndPass(authString) {
+  if (!authString) return {};
+  const [username, password] = removeTrailingAt(authString).split(':').map(decodeURIComponent)
+  return { username, password }
 }
 
 function removeTrailingAt(string) {
