@@ -1,5 +1,7 @@
 # URL Parser
 
+> This project is not meant to be a fully featured URL parser. It is a naive solution proposed during an unit test training session. 
+
 Parses URL in the following format: `protocol://user:pass@host:1000/some/path?query=string#hash`
 
 ```js
